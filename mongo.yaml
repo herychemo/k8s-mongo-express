@@ -34,3 +34,15 @@ spec:
             secretKeyRef:
               name: gr-samples-mongodb-secret
               key: mongo-root-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gr-samples-mongo-service
+spec:
+  selector:
+    app: gr-samples-mongodb
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
