@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gr-samples-mongo-deployment
+  labels:
+    app: gr-samples-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gr-samples-mongo
+  template:
+    metadata:
+      labels:
+        app: gr-samples-mongo
+    spec:
+      containers:
+      - name: gr-samples-mongodb
+        image: mongo:latest
+      ports:
+      - containerPort: 27017
+      env:
+      - name: MONGO_INITDB_ROOT_USERNAME
+        value: admin
+      - name: MONGO_INITDB_ROOT_PASSWORD
+        value: admin
