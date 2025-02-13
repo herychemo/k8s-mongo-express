@@ -3,10 +3,11 @@ Sample K8s configuration files for a simple mongo express setup, for reference p
 
 ## Execution order
 
-1. Mongo Secret.
 1. Mongo ConfigMap.
+1. Mongo Secret.
+1. Mongo Express Secret.
 1. Mongo deployment and service.
-1. Mongo Express deployment.
+1. Mongo Express deployment and service.
 
 ```shell
 kubectl apply -f mongo-configmap.yaml
