@@ -41,8 +41,8 @@ metadata:
   name: gr-samples-mongo-service
 spec:
   selector:
-    app: gr-samples-mongodb
+    app: gr-samples-mongo
   ports:
-    - protocol: TCP
-      port: 27017
-      targetPort: 27017
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017
