@@ -9,9 +9,11 @@ Sample K8s configuration files for a simple mongo express setup, for reference p
 1. Mongo Express deployment.
 
 ```shell
+kubectl apply -f mongo-configmap.yaml
+
 kubectl apply -f mongo-secret.yaml
 
-kubectl apply -f mongo-configmap.yaml
+kubectl apply -f mongo-express-secret.yaml
 
 kubectl apply -f mongo.yaml
 
