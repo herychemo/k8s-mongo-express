@@ -51,17 +51,3 @@ spec:
             secretKeyRef:
               name: gr-samples-mongo-express-secret
               key: mongo-express-pass
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: gr-samples-mongo-express-service
-spec:
-  selector:
-    app: gr-samples-mongo-express
-  type: LoadBalancer
-  ports:
-  - protocol: TCP
-    port: 8081
-    targetPort: 8081
-    nodePort: 31081
