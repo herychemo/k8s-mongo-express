@@ -3,6 +3,7 @@ Sample K8s configuration files for a simple mongo express setup, for reference p
 
 ## Execution order
 
+1. Create namespace and switch.
 1. Mongo ConfigMap.
 1. Mongo Secret.
 1. Mongo Express Secret.
@@ -11,6 +12,12 @@ Sample K8s configuration files for a simple mongo express setup, for reference p
 1. (Optional) Mongo Express external service.
 
 ```shell
+# Create namespace
+kubectl create -f app-namespace.yaml
+
+# Switch to namespace
+kubens k8s-mongo-express
+
 # Mongo ConfigMap
 kubectl apply -f mongo-configmap.yaml
 
@@ -33,12 +40,10 @@ kubectl apply -f mongo-express-service.yaml
 ## Delete all
 
 ```shell
-kubectl delete -f mongo-express-service.yaml >/dev/null 2>&1 | true
-kubectl delete -f mongo-express.yaml >/dev/null 2>&1 | true
-kubectl delete -f mongo.yaml >/dev/null 2>&1 | true
-kubectl delete -f mongo-express-secret.yaml >/dev/null 2>&1 | true
-kubectl delete -f mongo-secret.yaml >/dev/null 2>&1 | true
-kubectl delete -f mongo-configmap.yaml >/dev/null 2>&1 | true
+kubens k8s-mongo-express
+kubectl delete all --all
+kubens default
+kubectl delete -f app-namespace.yaml
 ```
 
 ## Additional details
