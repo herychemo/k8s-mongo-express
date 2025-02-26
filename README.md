@@ -61,7 +61,7 @@ echo -n "my string" | base64
 
 ### Setup host for ingress
 
-Identity address for ingress:
+Identify the address for ingress:
 ```shell
 > kubectl get ingress
 
