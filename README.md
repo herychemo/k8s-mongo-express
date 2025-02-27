@@ -59,6 +59,11 @@ For secrets, get base64 encoded strings using:
 echo -n "my string" | base64
 ```
 
+### Ingress controller setup
+
+Ingress configured using nginx-ingress:
+https://github.com/kubernetes/ingress-nginx
+
 ### Setup host for ingress
 
 Identify the address for ingress:
@@ -75,3 +80,26 @@ And configure hosts or dns based on generated address. i.e.
 
 127.0.0.1	localhost	mongo-express.grayraccoon.com
 ```
+
+### SSL Generation
+
+The following commands can be used to generate the key and the cert.
+
+```shell
+# Key
+openssl genrsa -out ca.key 2048
+
+# Cert
+openssl req -x509 -new -nodes -key ca.key -sha256 \
+    -subj "/CN=mongo-express.grayraccoon.com" -days 1024 -out ca.crt -extensions san \
+    -config <(
+echo '[req]';
+echo 'distinguished_name=req';
+echo '[san]';
+echo 'subjectAltName=DNS:mongo-express.grayraccoon.com')
+
+cat tls/ca.crt | base64
+cat tls/ca.key | base64
+```
+
+Then, create the secret using generated files' contents.
