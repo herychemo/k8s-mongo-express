@@ -42,7 +42,10 @@ metadata:
 spec:
   selector:
     app: gr-samples-mongo
+  type: ClusterIP
+  clusterIP: None
   ports:
-  - protocol: TCP
+  - name: mongodb
+    protocol: TCP
     port: 27017
     targetPort: 27017
