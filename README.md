@@ -8,9 +8,8 @@ Sample K8s configuration files for a simple mongo express setup, for reference p
 1. Mongo Secret.
 1. Mongo Express Secret.
 1. Mongo deployment and service.
-1. Mongo Express deployment.
-1. (Optional) Mongo Express external service.
-1. (Optional) Mongo Express ingress.
+1. Mongo Express deployment and service.
+1. Mongo Express ingress.
 
 ```shell
 # Create namespace
@@ -34,11 +33,8 @@ kubectl apply -f mongo.yaml
 # Mongo express Deployment
 kubectl apply -f mongo-express.yaml
 
-# Mongo express External Service
-kubectl apply -f mongo-express-external-service.yaml
-
-# Mongo express Ingress Service
-kubectl apply -f mongo-express-ingress-service.yaml
+# Mongo express Ingress
+kubectl apply -f mongo-express-ingress.yaml
 ```
 
 ## Delete all

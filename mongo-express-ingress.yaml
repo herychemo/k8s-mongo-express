@@ -1,15 +1,3 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: gr-samples-mongo-express-service
-spec:
-  selector:
-    app: gr-samples-mongo-express
-  ports:
-  - protocol: TCP
-    port: 8081
-    targetPort: 8081
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -24,6 +12,7 @@ spec:
   - hosts:
     - mongo-express.grayraccoon.com
     secretName: mongo-express-tls-secret
+  ingressClassName: "nginx"
   rules:
   - host: mongo-express.grayraccoon.com
     http:
