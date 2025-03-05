@@ -4,6 +4,8 @@ Sample K8s configuration files for a simple mongo express setup, for reference p
 ## Execution order
 
 1. Create namespace and switch.
+1. Storage class and Persistent Volume.
+1. Persistent Volume Claim.
 1. Mongo ConfigMap.
 1. Mongo Secret.
 1. Mongo Express Secret.
@@ -17,6 +19,13 @@ kubectl create -f app-namespace.yaml
 
 # Switch to namespace
 kubens k8s-mongo-express
+
+# Storage class and Persistent Volume.
+kubectl apply -f docker-sc.yaml
+kubectl apply -f mongo-pv.yaml
+
+# Persistent Volume Claim.
+kubectl apply -f mongo-pvc.yaml
 
 # Mongo ConfigMap
 kubectl apply -f mongo-configmap.yaml
@@ -42,6 +51,9 @@ kubectl apply -f mongo-express-ingress.yaml
 ```shell
 kubens k8s-mongo-express
 kubectl delete all --all
+kubectl delete -f mongo-pvc.yaml
+kubectl delete -f mongo-pv.yaml
+kubectl delete -f docker-sc.yaml
 kubens default
 kubectl delete -f app-namespace.yaml
 ```
